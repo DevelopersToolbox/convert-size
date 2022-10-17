@@ -1,9 +1,11 @@
 def xxx(item, stuff):
     return any(s.lower() == item.lower() for s in stuff)
 
+
 def yyy(item, stuff):
     new_list = [s.lower() for s in stuff]
     return new_list.index(item.lower())
+
 
 def convert_size(size, start_unit, end_unit, SI = False):
     if size == 0:
@@ -21,16 +23,14 @@ def convert_size(size, start_unit, end_unit, SI = False):
         print(f"Invalid unit type, valid  option are: {valid_types}")
         return size
 
-    startIndex = yyy(start_unit, size_name)
-    endIndex = yyy(end_unit, size_name)
+    start_index = yyy(start_unit, size_name)
+    end_index = yyy(end_unit, size_name)
 
-    if startIndex == endIndex:
-        pass
-    elif endIndex > startIndex:
-        for count in range(endIndex - startIndex):
+    if end_index > start_index:
+        for _count in range(end_index - start_index):
             size /= divisor
     else:
-        for count in range(startIndex - endIndex):
+        for _count in range(start_index - end_index):
             size *= divisor
 
     return size
