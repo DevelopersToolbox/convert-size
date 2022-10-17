@@ -7,11 +7,11 @@ def yyy(item, stuff):
     return new_list.index(item.lower())
 
 
-def convert_size(size, start_unit, end_unit, SI = False):
+def convert_size(size, start_unit, end_unit, si_units = False):
     if size == 0:
         return "0"
 
-    if SI is True:
+    if si_units is True:
         divisor = 1000
         size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
     else:
