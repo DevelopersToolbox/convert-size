@@ -56,7 +56,6 @@ jobs:
     needs:
       - actionlint
       - awesomebot
-      - markdown-lint
       - yaml-lint
     runs-on: ubuntu-latest
     steps:
