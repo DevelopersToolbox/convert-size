@@ -1,6 +1,6 @@
-from setuptools import setup
 from codecs import open
 from os import path
+from setuptools import setup
 
 VERSION = '0.0.5'
 DESCRIPTION = 'Convert one file size type to another'

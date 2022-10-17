@@ -1,13 +1,26 @@
+"""
+Documentation to go here
+"""
+
 def xxx(item, stuff):
+    """
+    Docs to go here
+    """
     return any(s.lower() == item.lower() for s in stuff)
 
 
 def yyy(item, stuff):
+    """
+    Docs to go here
+    """
     new_list = [s.lower() for s in stuff]
     return new_list.index(item.lower())
 
 
 def convert_size(size, start_unit, end_unit, si_units = False):
+    """
+    Docs to go here
+    """
     if size == 0:
         return "0"
 
