@@ -1,5 +1,3 @@
-import math
-
 def xxx(item, stuff):
     return any(s.lower() == item.lower() for s in stuff)
 
