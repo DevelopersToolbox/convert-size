@@ -2,6 +2,8 @@
 Documentation to go here
 """
 
+import pytest
+
 from convertsize.convertsize import convert_size
 
 tests = [
@@ -129,7 +131,8 @@ def test_invalid_options():
     """
     Test passing invalid option
     """
-    assert convert_size(SIZE, 'B', 'MB') == SIZE  # nosec: B101
+    with pytest.raises(Exception):
+        convert_size(SIZE, 'B', 'MB') == SIZE  # nosec: B101
 
 
 def get_type(code, section = 'IEC'):
