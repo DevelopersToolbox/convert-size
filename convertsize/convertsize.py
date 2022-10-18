@@ -53,7 +53,7 @@ def convert_size_iec(size, start_unit, end_unit):
 
     scaler = 1024
     size_codes = ('B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB')
-    size_name = ('Byte', 'Kibibyte', 'Mebibyte', 'Gibibyte', 'Tebibyte', 'Pebibyte', 'Exbibyte', 'Zebibyte', 'Yobibyte')
+    size_name = ('Byte', 'Kibibyte', 'Mebibyte', 'Gibibyte', 'Tebibyte', 'Pebibyte', 'Exbibyte', 'Zebibyte', 'Yobibyte')  # pylint: disable=unused-variable
 
     start_index = __get_index(start_unit, size_codes)
     end_index = __get_index(end_unit, size_codes)
@@ -71,7 +71,7 @@ def convert_size_si(size, start_unit, end_unit):
 
     scaler = 1000
     size_codes = ('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB')
-    size_name = ('Byte', 'Kilobyte', 'Megabyte', 'Gigabyte', 'Terabyte', 'Petabyte', 'Exabyte', 'Zettabyte', 'Yottabyte')
+    size_name = ('Byte', 'Kilobyte', 'Megabyte', 'Gigabyte', 'Terabyte', 'Petabyte', 'Exabyte', 'Zettabyte', 'Yottabyte')  # pylint: disable=unused-variable
 
     start_index = __get_index(start_unit, size_codes)
     end_index = __get_index(end_unit, size_codes)
