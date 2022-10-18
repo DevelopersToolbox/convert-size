@@ -146,7 +146,7 @@ def test_invalid_options():
     Test passing invalid option
     """
     with pytest.raises(Exception):
-        convert_size(SIZE, 'B', 'MB') == SIZE  # nosec: B101
+        __unused = convert_size(SIZE, 'B', 'MB') == SIZE  # nosec: B101
 
 
 def get_type(code, section = 'IEC'):
