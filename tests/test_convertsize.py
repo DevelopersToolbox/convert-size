@@ -2,8 +2,6 @@
 Documentation to go here
 """
 
-import pytest
-
 from convertsize.convertsize import convert_size, convert_size_iec, convert_size_si, get_name_from_code, get_name_from_code_iec, get_name_from_code_si
 
 tests = [
@@ -26,7 +24,7 @@ tests = [
                      'bytes': 1024,
                    },
             'SI': {
-                    'name': 'kilobyte',
+                    'name': 'Kilobyte',
                     'code': 'KB',
                     'bytes': 1000,
                   },
@@ -120,220 +118,143 @@ tests = [
 SIZE = 1
 
 
-def test_zero():
+def test_zero_bytes():
     """
-    Test 0 bytes password
+    Test 0 bytes - Default
     """
-    assert convert_size(0, 'B', 'MiB') == 0  # nosec: B101
+    errors = []
 
+    if convert_size(0, 'B', 'MiB') != 0:
+        errors.append('Test 1 failed')
+    if convert_size(0, 'B', 'MB', True) != 0:
+        errors.append('Test 2 failed')
+    if convert_size(0, 'B', 'MiB', False) != 0:
+        errors.append('Test 3 failed')
+    if convert_size_iec(0, 'B', 'MiB') != 0:
+        errors.append('Test 4 failed')
+    if convert_size_si(0, 'B', 'MB') != 0:
+        errors.append('Test 5 failed')
 
-def test_zero_iec():
-    """
-    Test 0 bytes password
-    """
-    assert convert_size_iec(0, 'B', 'MiB') == 0  # nosec: B101
-
-
-def test_zero_si():
-    """
-    Test 0 bytes password
-    """
-    assert convert_size_si(0, 'B', 'MiB') == 0  # nosec: B101
-
-
-def test_get_name_from_code():
-    """
-    Test 0 bytes password
-    """
-    assert get_name_from_code('MiB') == 'Mebibyte'  # nosec: B101
-
-
-def test_get_name_from_code_iec():
-    """
-    Test 0 bytes password
-    """
-    assert get_name_from_code_iec('MiB') == 'Mebibyte'  # nosec: B101
-
-
-def test_get_name_from_code_si():
-    """
-    Test 0 bytes password
-    """
-    assert get_name_from_code_si('MB') == 'Megabyte'  # nosec: B101
+    assert not errors, "errors occured:\n{}".format("\n".join(errors))
 
 
 def test_invalid_options():
     """
     Test passing invalid option
     """
-    with pytest.raises(Exception):
-        __unused = convert_size(SIZE, 'B', 'MB') == SIZE  # nosec: B101
+    errors = []
+
+    try:
+        convert_size(SIZE, 'B', 'MB')
+    except ValueError:
+        pass
+    else:
+        errors.append('Test 1 failed')
+    try:
+        convert_size(SIZE, 'B', 'MiB', True)
+    except ValueError:
+        pass
+    else:
+        errors.append('Test 2 failed')
+    try:
+        convert_size(SIZE, 'B', 'MB', False)
+    except ValueError:
+        pass
+    else:
+        errors.append('Test 1 failed')
+    try:
+        convert_size_iec(SIZE, 'B', 'MB')
+    except ValueError:
+        pass
+    else:
+        errors.append('Test 1 failed')
+    try:
+        convert_size_si(SIZE, 'B', 'MiB')
+    except ValueError:
+        pass
+    else:
+        errors.append('Test 1 failed')
+
+    assert not errors, "errors occured:\n{}".format("\n".join(errors))
 
 
-def get_type(code, section = 'IEC'):
+def test_get_name_from_code():
     """
-    Docs to come
+    Test 0 bytes password
     """
-    return next((item[section] for item in tests if item[section]["code"] == code), False)
+    errors = []
+    count = 0
+
+    for t in tests:
+        count += 1
+        if get_name_from_code(t['IEC']['code']) != t['IEC']['name']:
+            errors.append(f"Test {count} {t['IEC']['code']} failed")
+        if get_name_from_code(t['SI']['code'], True) != t['SI']['name']:
+            errors.append(f"Test {count} {t['SI']['code']} failed")
+        if get_name_from_code(t['IEC']['code'], False) != t['IEC']['name']:
+            errors.append(f"Test {count} {t['IEC']['code']} failed")
+        if get_name_from_code_iec(t['IEC']['code']) != t['IEC']['name']:
+            errors.append(f"Test {count} {t['IEC']['code']} failed")
+        if get_name_from_code_si(t['SI']['code']) != t['SI']['name']:
+            errors.append(f"Test {count} {t['SI']['code']} failed")
+
+    assert not errors, "errors occured:\n{}".format("\n".join(errors))
 
 
-def test_byte():
+def test_convert_size_to_bytes():
     """
-    Docs to come
+    Test 0 bytes password
     """
-    test = get_type('B', 'IEC')
-    assert convert_size(SIZE, test['code'], 'B') == test['bytes']  # nosec: B101
-    assert convert_size(test['bytes'], 'B', test['code']) == SIZE  # nosec: B101
+    errors = []
+    count = 0
+    size = 1
+
+    for t in tests:
+        count += 1
+
+        if convert_size(size, t['IEC']['code'], 'B') != t['IEC']['bytes']:
+            errors.append(f"Test {count} {t['IEC']['code']} failed")
+        if convert_size(size, t['SI']['code'], 'B', True) != t['SI']['bytes']:
+            errors.append(f"Test {count} {t['SI']['code']} failed")
+        if convert_size(size, t['IEC']['code'], 'B', False) != t['IEC']['bytes']:
+            errors.append(f"Test {count} {t['IEC']['code']} failed")
+        if convert_size_iec(size, t['IEC']['code'], 'B') != t['IEC']['bytes']:
+            errors.append(f"Test {count} {t['IEC']['code']} failed")
+        if convert_size_si(size, t['SI']['code'], 'B') != t['SI']['bytes']:
+            errors.append(f"Test {count} {t['SI']['code']} failed")
+
+    assert not errors, "errors occured:\n{}".format("\n".join(errors))
 
 
-def test_byte_si():
+def test_convert_size_to_bytes_and_back():
     """
-    Docs to come
+    Test 0 bytes password
     """
-    test = get_type('B', 'SI')
-    assert convert_size(SIZE, test['code'], 'B', True) == test['bytes']  # nosec: B101
-    assert convert_size(test['bytes'], 'B', test['code'], True) == SIZE  # nosec: B101
+    errors = []
+    count = 0
+    size = 1
 
+    for t in tests:
+        count += 1
 
-def test_kilobyte():
-    """
-    Docs to come
-    """
-    test = get_type('KiB', 'IEC')
-    assert convert_size(SIZE, test['code'], 'B') == test['bytes']  # nosec: B101
-    assert convert_size(test['bytes'], 'B', test['code']) == SIZE  # nosec: B101
+        bytes = convert_size(size, t['IEC']['code'], 'B')
+        if convert_size(bytes, 'B', t['IEC']['code']) != size:
+            errors.append(f"Test {count} {t['IEC']['code']} failed - {bytes} vs {size}")
 
+        bytes = convert_size(size, t['SI']['code'], 'B', True)
+        if convert_size(bytes, 'B', t['SI']['code'], True) != size:
+            errors.append(f"Test {count} {t['SI']['code']} failed - {bytes} vs {size}")
 
-def test_kilobyte_si():
-    """
-    Docs to come
-    """
-    test = get_type('KB', 'SI')
-    assert convert_size(SIZE, test['code'], 'B', True) == test['bytes']  # nosec: B101
-    assert convert_size(test['bytes'], 'B', test['code'], True) == SIZE  # nosec: B101
+        bytes = convert_size(size, t['IEC']['code'], 'B', False)
+        if convert_size(bytes, 'B', t['IEC']['code'], False) != size:
+            errors.append(f"Test {count} {t['IEC']['code']} failed - {bytes} vs {size}")
 
+        bytes = convert_size_iec(size, t['IEC']['code'], 'B')
+        if convert_size_iec(bytes, 'B', t['IEC']['code']) != size:
+            errors.append(f"Test {count} {t['IEC']['code']} failed - {bytes} vs {size}")
 
-def test_megabyte():
-    """
-    Docs to come
-    """
-    test = get_type('MiB', 'IEC')
-    assert convert_size(SIZE, test['code'], 'B') == test['bytes']  # nosec: B101
-    assert convert_size(test['bytes'], 'B', test['code']) == SIZE  # nosec: B101
+        bytes = convert_size_si(size, t['SI']['code'], 'B')
+        if convert_size_si(bytes, 'B', t['SI']['code']) != size:
+            errors.append(f"Test {count} {t['SI']['code']} failed - {bytes} vs {size}")
 
-
-def test_megabyte_si():
-    """
-    Docs to come
-    """
-    test = get_type('MB', 'SI')
-    assert convert_size(SIZE, test['code'], 'B', True) == test['bytes']  # nosec: B101
-    assert convert_size(test['bytes'], 'B', test['code'], True) == SIZE  # nosec: B101
-
-
-def test_gigabyte():
-    """
-    Docs to come
-    """
-    test = get_type('GiB', 'IEC')
-    assert convert_size(SIZE, test['code'], 'B') == test['bytes']  # nosec: B101
-    assert convert_size(test['bytes'], 'B', test['code']) == SIZE  # nosec: B101
-
-
-def test_gigabyte_si():
-    """
-    Docs to come
-    """
-    test = get_type('GB', 'SI')
-    assert convert_size(SIZE, test['code'], 'B', True) == test['bytes']  # nosec: B101
-    assert convert_size(test['bytes'], 'B', test['code'], True) == SIZE  # nosec: B101
-
-
-def test_terabyte():
-    """
-    Docs to come
-    """
-    test = get_type('TiB', 'IEC')
-    assert convert_size(SIZE, test['code'], 'B') == test['bytes']  # nosec: B101
-    assert convert_size(test['bytes'], 'B', test['code']) == SIZE  # nosec: B101
-
-
-def test_terabyte_si():
-    """
-    Docs to come
-    """
-    test = get_type('TB', 'SI')
-    assert convert_size(SIZE, test['code'], 'B', True) == test['bytes']  # nosec: B101
-    assert convert_size(test['bytes'], 'B', test['code'], True) == SIZE  # nosec: B101
-
-
-def test_petabyte():
-    """
-    Docs to come
-    """
-    test = get_type('PiB', 'IEC')
-    assert convert_size(SIZE, test['code'], 'B') == test['bytes']  # nosec: B101
-    assert convert_size(test['bytes'], 'B', test['code']) == SIZE  # nosec: B101
-
-
-def test_petabyte_si():
-    """
-    Docs to come
-    """
-    test = get_type('PB', 'SI')
-    assert convert_size(SIZE, test['code'], 'B', True) == test['bytes']  # nosec: B101
-    assert convert_size(test['bytes'], 'B', test['code'], True) == SIZE  # nosec: B101
-
-
-def test_exabyte():
-    """
-    Docs to come
-    """
-    test = get_type('EiB', 'IEC')
-    assert convert_size(SIZE, test['code'], 'B') == test['bytes']  # nosec: B101
-    assert convert_size(test['bytes'], 'B', test['code']) == SIZE  # nosec: B101
-
-
-def test_exabyte_si():
-    """
-    Docs to come
-    """
-    test = get_type('EB', 'SI')
-    assert convert_size(SIZE, test['code'], 'B', True) == test['bytes']  # nosec: B101
-    assert convert_size(test['bytes'], 'B', test['code'], True) == SIZE  # nosec: B101
-
-
-def test_zettabyte():
-    """
-    Docs to come
-    """
-    test = get_type('ZiB', 'IEC')
-    assert convert_size(SIZE, test['code'], 'B') == test['bytes']  # nosec: B101
-    assert convert_size(test['bytes'], 'B', test['code']) == SIZE  # nosec: B101
-
-
-def test_zettabyte_si():
-    """
-    Docs to come
-    """
-    test = get_type('ZB', 'SI')
-    assert convert_size(SIZE, test['code'], 'B', True) == test['bytes']  # nosec: B101
-    assert convert_size(test['bytes'], 'B', test['code'], True) == SIZE  # nosec: B101
-
-
-def test_yottabyte():
-    """
-    Docs to come
-    """
-    test = get_type('YiB', 'IEC')
-    assert convert_size(SIZE, test['code'], 'B') == test['bytes']  # nosec: B101
-    assert convert_size(test['bytes'], 'B', test['code']) == SIZE  # nosec: B101
-
-
-def test_yottabyte_si():
-    """
-    Docs to come
-    """
-    test = get_type('YB', 'SI')
-    assert convert_size(SIZE, test['code'], 'B', True) == test['bytes']  # nosec: B101
-    assert convert_size(test['bytes'], 'B', test['code'], True) == SIZE  # nosec: B101
+    assert not errors, "errors occured:\n{}".format("\n".join(errors))
