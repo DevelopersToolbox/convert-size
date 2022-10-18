@@ -115,116 +115,173 @@ tests = [
           },
         ]
 
-size = 1
+SIZE = 1
 
 
 def get_type(code, section = 'IEC'):
+    """
+    Docs to come
+    """
     return next((item[section] for item in tests if item[section]["code"] == code), False)
 
 
 def test_byte():
+    """
+    Docs to come
+    """
     test = get_type('B', 'IEC')
-    assert convert_size(size, test['code'], 'B') == test['bytes']
-    assert convert_size(test['bytes'], 'B', test['code']) == size
+    assert convert_size(SIZE, test['code'], 'B') == test['bytes']
+    assert convert_size(test['bytes'], 'B', test['code']) == SIZE
 
 
 def test_byte_si():
+    """
+    Docs to come
+    """
     test = get_type('B', 'SI')
-    assert convert_size(size, test['code'], 'B', True) == test['bytes']
-    assert convert_size(test['bytes'], 'B', test['code'], True) == size
+    assert convert_size(SIZE, test['code'], 'B', True) == test['bytes']
+    assert convert_size(test['bytes'], 'B', test['code'], True) == SIZE
 
 
 def test_kilobyte():
+    """
+    Docs to come
+    """
     test = get_type('KiB', 'IEC')
-    assert convert_size(size, test['code'], 'B') == test['bytes']
-    assert convert_size(test['bytes'], 'B', test['code']) == size
+    assert convert_size(SIZE, test['code'], 'B') == test['bytes']
+    assert convert_size(test['bytes'], 'B', test['code']) == SIZE
 
 
 def test_kilobyte_si():
+    """
+    Docs to come
+    """
     test = get_type('KB', 'SI')
-    assert convert_size(size, test['code'], 'B', True) == test['bytes']
-    assert convert_size(test['bytes'], 'B', test['code'], True) == size
+    assert convert_size(SIZE, test['code'], 'B', True) == test['bytes']
+    assert convert_size(test['bytes'], 'B', test['code'], True) == SIZE
 
 
 def test_megabyte():
+    """
+    Docs to come
+    """
     test = get_type('MiB', 'IEC')
-    assert convert_size(size, test['code'], 'B') == test['bytes']
-    assert convert_size(test['bytes'], 'B', test['code']) == size
+    assert convert_size(SIZE, test['code'], 'B') == test['bytes']
+    assert convert_size(test['bytes'], 'B', test['code']) == SIZE
 
 
 def test_megabyte_si():
+    """
+    Docs to come
+    """
     test = get_type('MB', 'SI')
-    assert convert_size(size, test['code'], 'B', True) == test['bytes']
-    assert convert_size(test['bytes'], 'B', test['code'], True) == size
+    assert convert_size(SIZE, test['code'], 'B', True) == test['bytes']
+    assert convert_size(test['bytes'], 'B', test['code'], True) == SIZE
 
 
 def test_gigabyte():
+    """
+    Docs to come
+    """
     test = get_type('GiB', 'IEC')
-    assert convert_size(size, test['code'], 'B') == test['bytes']
-    assert convert_size(test['bytes'], 'B', test['code']) == size
+    assert convert_size(SIZE, test['code'], 'B') == test['bytes']
+    assert convert_size(test['bytes'], 'B', test['code']) == SIZE
 
 
 def test_gigabyte_si():
+    """
+    Docs to come
+    """
     test = get_type('GB', 'SI')
-    assert convert_size(size, test['code'], 'B', True) == test['bytes']
-    assert convert_size(test['bytes'], 'B', test['code'], True) == size
+    assert convert_size(SIZE, test['code'], 'B', True) == test['bytes']
+    assert convert_size(test['bytes'], 'B', test['code'], True) == SIZE
 
 
 def test_terabyte():
+    """
+    Docs to come
+    """
     test = get_type('TiB', 'IEC')
-    assert convert_size(size, test['code'], 'B') == test['bytes']
-    assert convert_size(test['bytes'], 'B', test['code']) == size
+    assert convert_size(SIZE, test['code'], 'B') == test['bytes']
+    assert convert_size(test['bytes'], 'B', test['code']) == SIZE
 
 
 def test_terabyte_si():
+    """
+    Docs to come
+    """
     test = get_type('TB', 'SI')
-    assert convert_size(size, test['code'], 'B', True) == test['bytes']
-    assert convert_size(test['bytes'], 'B', test['code'], True) == size
+    assert convert_size(SIZE, test['code'], 'B', True) == test['bytes']
+    assert convert_size(test['bytes'], 'B', test['code'], True) == SIZE
 
 
 def test_petabyte():
+    """
+    Docs to come
+    """
     test = get_type('PiB', 'IEC')
-    assert convert_size(size, test['code'], 'B') == test['bytes']
-    assert convert_size(test['bytes'], 'B', test['code']) == size
+    assert convert_size(SIZE, test['code'], 'B') == test['bytes']
+    assert convert_size(test['bytes'], 'B', test['code']) == SIZE
 
 
 def test_petabyte_si():
+    """
+    Docs to come
+    """
     test = get_type('PB', 'SI')
-    assert convert_size(size, test['code'], 'B', True) == test['bytes']
-    assert convert_size(test['bytes'], 'B', test['code'], True) == size
+    assert convert_size(SIZE, test['code'], 'B', True) == test['bytes']
+    assert convert_size(test['bytes'], 'B', test['code'], True) == SIZE
 
 
 def test_exabyte():
+    """
+    Docs to come
+    """
     test = get_type('EiB', 'IEC')
-    assert convert_size(size, test['code'], 'B') == test['bytes']
-    assert convert_size(test['bytes'], 'B', test['code']) == size
+    assert convert_size(SIZE, test['code'], 'B') == test['bytes']
+    assert convert_size(test['bytes'], 'B', test['code']) == SIZE
 
 
 def test_exabyte_si():
+    """
+    Docs to come
+    """
     test = get_type('EB', 'SI')
-    assert convert_size(size, test['code'], 'B', True) == test['bytes']
-    assert convert_size(test['bytes'], 'B', test['code'], True) == size
+    assert convert_size(SIZE, test['code'], 'B', True) == test['bytes']
+    assert convert_size(test['bytes'], 'B', test['code'], True) == SIZE
 
 
 def test_zettabyte():
+    """
+    Docs to come
+    """
     test = get_type('ZiB', 'IEC')
-    assert convert_size(size, test['code'], 'B') == test['bytes']
-    assert convert_size(test['bytes'], 'B', test['code']) == size
+    assert convert_size(SIZE, test['code'], 'B') == test['bytes']
+    assert convert_size(test['bytes'], 'B', test['code']) == SIZE
 
 
 def test_zettabyte_si():
+    """
+    Docs to come
+    """
     test = get_type('ZB', 'SI')
-    assert convert_size(size, test['code'], 'B', True) == test['bytes']
-    assert convert_size(test['bytes'], 'B', test['code'], True) == size
+    assert convert_size(SIZE, test['code'], 'B', True) == test['bytes']
+    assert convert_size(test['bytes'], 'B', test['code'], True) == SIZE
 
 
 def test_yottabyte():
+    """
+    Docs to come
+    """
     test = get_type('YiB', 'IEC')
-    assert convert_size(size, test['code'], 'B') == test['bytes']
-    assert convert_size(test['bytes'], 'B', test['code']) == size
+    assert convert_size(SIZE, test['code'], 'B') == test['bytes']
+    assert convert_size(test['bytes'], 'B', test['code']) == SIZE
 
 
 def test_yottabyte_si():
+    """
+    Docs to come
+    """
     test = get_type('YB', 'SI')
-    assert convert_size(size, test['code'], 'B', True) == test['bytes']
-    assert convert_size(test['bytes'], 'B', test['code'], True) == size
+    assert convert_size(SIZE, test['code'], 'B', True) == test['bytes']
+    assert convert_size(test['bytes'], 'B', test['code'], True) == SIZE
