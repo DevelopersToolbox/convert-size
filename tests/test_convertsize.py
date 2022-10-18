@@ -4,7 +4,7 @@ Documentation to go here
 
 import pytest
 
-from convertsize.convertsize import convert_size, convert_size_iec, convert_size_si
+from convertsize.convertsize import convert_size, convert_size_iec, convert_size_si, get_name_from_code, get_name_from_code_iec, get_name_from_code_si
 
 tests = [
           {
@@ -139,6 +139,27 @@ def test_zero_si():
     Test 0 bytes password
     """
     assert convert_size_si(0, 'B', 'MiB') == 0  # nosec: B101
+
+
+def test_get_name_from_code():
+    """
+    Test 0 bytes password
+    """
+    assert get_name_from_code('MiB') == 'Mebibyte'  # nosec: B101
+
+
+def test_get_name_from_code_iec():
+    """
+    Test 0 bytes password
+    """
+    assert get_name_from_code_iec('MiB') == 'Mebibyte'  # nosec: B101
+
+
+def test_get_name_from_code_si():
+    """
+    Test 0 bytes password
+    """
+    assert get_name_from_code_si('MB') == 'Megabyte'  # nosec: B101
 
 
 def test_invalid_options():

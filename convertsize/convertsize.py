@@ -2,6 +2,14 @@
 Documentation to go here
 """
 
+# IEC based values
+size_codes_iec = ('B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB')
+size_names_iec = ('Byte', 'Kibibyte', 'Mebibyte', 'Gibibyte', 'Tebibyte', 'Pebibyte', 'Exbibyte', 'Zebibyte', 'Yobibyte')
+
+# SI based values
+size_codes_si = ('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB')
+size_names_si = ('Byte', 'Kilobyte', 'Megabyte', 'Gigabyte', 'Terabyte', 'Petabyte', 'Exabyte', 'Zettabyte', 'Yottabyte')
+
 
 def __in_tuple(item, stuff):
     """
@@ -22,6 +30,7 @@ def __get_tuple(item, stuff):
 
 def __get_index(unit, code_list):
     """
+    Docs to go here
     """
 
     if __in_tuple(unit, code_list) is False:
@@ -32,6 +41,7 @@ def __get_index(unit, code_list):
 
 def __calculate_new_size(size, scaler, start_index, end_index):
     """
+    Docs to go here
     """
 
     if end_index > start_index:
@@ -43,6 +53,34 @@ def __calculate_new_size(size, scaler, start_index, end_index):
     return size
 
 
+def get_name_from_code_iec(unit):
+    """
+    Docs to go here
+    """
+
+    name_index = __get_index(unit, size_codes_iec)
+    return size_names_iec[name_index]
+
+
+def get_name_from_code_si(unit):
+    """
+    Docs to go here
+    """
+
+    name_index = __get_index(unit, size_codes_si)
+    return size_names_si[name_index]
+
+
+def get_name_from_code(unit, si_units = False):
+    """
+    Docs to go here
+    """
+
+    if si_units is True:
+        return get_name_from_code_si(unit)
+    return get_name_from_code_iec(unit)
+
+
 def convert_size_iec(size, start_unit, end_unit):
     """
     Docs to go here
@@ -52,11 +90,9 @@ def convert_size_iec(size, start_unit, end_unit):
         return 0
 
     scaler = 1024
-    size_codes = ('B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB')
-    size_name = ('Byte', 'Kibibyte', 'Mebibyte', 'Gibibyte', 'Tebibyte', 'Pebibyte', 'Exbibyte', 'Zebibyte', 'Yobibyte')  # pylint: disable=unused-variable
 
-    start_index = __get_index(start_unit, size_codes)
-    end_index = __get_index(end_unit, size_codes)
+    start_index = __get_index(start_unit, size_codes_iec)
+    end_index = __get_index(end_unit, size_codes_iec)
 
     return __calculate_new_size(size, scaler, start_index, end_index)
 
@@ -70,11 +106,9 @@ def convert_size_si(size, start_unit, end_unit):
         return 0
 
     scaler = 1000
-    size_codes = ('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB')
-    size_name = ('Byte', 'Kilobyte', 'Megabyte', 'Gigabyte', 'Terabyte', 'Petabyte', 'Exabyte', 'Zettabyte', 'Yottabyte')  # pylint: disable=unused-variable
 
-    start_index = __get_index(start_unit, size_codes)
-    end_index = __get_index(end_unit, size_codes)
+    start_index = __get_index(start_unit, size_codes_si)
+    end_index = __get_index(end_unit, size_codes_si)
 
     return __calculate_new_size(size, scaler, start_index, end_index)
 
