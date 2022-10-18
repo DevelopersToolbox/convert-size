@@ -2,7 +2,7 @@ from codecs import open
 from os import path
 from setuptools import setup
 
-VERSION = '0.0.5'
+VERSION = '0.0.6'
 DESCRIPTION = 'Convert one file size type to another'
 
 here = path.abspath(path.dirname(__file__))
