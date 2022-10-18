@@ -20,7 +20,7 @@ def __get_tuple(item, stuff):
     return new_list.index(item.lower())
 
 
-def __get_index(size, unit, code_list):
+def __get_index(unit, code_list):
     """
     """
 
@@ -29,15 +29,6 @@ def __get_index(size, unit, code_list):
         raise ValueError(f'Invalid unit type {unit}, valid  option are: {valid_types}')
     return __get_tuple(unit, code_list)
 
-
-def __get_indexs(size, start_unit, end_unit, size_codes):
-    """
-    """
-
-    start_index = __get_index(size, start_unit, size_codes)
-    end_index = __get_index(size, end_unit, size_codes)
-
-    return start_index, end_index
 
 def __calculate_new_size(size, scaler, start_index, end_index):
     """
@@ -62,8 +53,10 @@ def convert_size_iec(size, start_unit, end_unit):
 
     scaler = 1024
     size_codes = ('B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB')
+    size_name = ('Byte', 'Kibibyte', 'Mebibyte', 'Gibibyte', 'Tebibyte', 'Pebibyte', 'Exbibyte', 'Zebibyte', 'Yobibyte')
 
-    start_index, end_index = __get_indexs(size, start_unit, end_unit, size_codes)
+    start_index = __get_index(start_unit, size_codes)
+    end_index = __get_index(end_unit, size_codes)
 
     return __calculate_new_size(size, scaler, start_index, end_index)
 
@@ -78,8 +71,10 @@ def convert_size_si(size, start_unit, end_unit):
 
     scaler = 1000
     size_codes = ('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB')
+    size_name = ('Byte', 'Kilobyte', 'Megabyte', 'Gigabyte', 'Terabyte', 'Petabyte', 'Exabyte', 'Zettabyte', 'Yottabyte')
 
-    start_index, end_index = __get_indexs(size, start_unit, end_unit, size_codes)
+    start_index = __get_index(start_unit, size_codes)
+    end_index = __get_index(end_unit, size_codes)
 
     return __calculate_new_size(size, scaler, start_index, end_index)
 
@@ -93,5 +88,4 @@ def convert_size(size, start_unit, end_unit, si_units = False):
 
     if si_units is True:
         return convert_size_si(size, start_unit, end_unit)
-    else:
-        return convert_size_iec(size, start_unit, end_unit)
+    return convert_size_iec(size, start_unit, end_unit)
