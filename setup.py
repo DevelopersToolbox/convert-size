@@ -6,7 +6,7 @@ VERSION = '0.0.5'
 DESCRIPTION = 'Convert one file size type to another'
 
 here = path.abspath(path.dirname(__file__))
-with open(path.join(here, 'README.md'), encoding='utf-8') as f:
+with open(path.join(here, 'pypi.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
