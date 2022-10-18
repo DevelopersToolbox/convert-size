@@ -44,8 +44,6 @@ tests = [
           },
         ]
 
-SIZE = 1
-
 
 def test_zero_bytes():
     """
@@ -72,33 +70,34 @@ def test_invalid_options():
     Test passing invalid option
     """
     errors = []
+    size = 1
 
     try:
-        convert_size(SIZE, 'B', 'MB')
+        convert_size(size, 'B', 'MB')
     except ValueError:
         pass
     else:
         errors.append('Test 1 failed')
     try:
-        convert_size(SIZE, 'B', 'MiB', True)
+        convert_size(size, 'B', 'MiB', True)
     except ValueError:
         pass
     else:
         errors.append('Test 2 failed')
     try:
-        convert_size(SIZE, 'B', 'MB', False)
+        convert_size(size, 'B', 'MB', False)
     except ValueError:
         pass
     else:
         errors.append('Test 1 failed')
     try:
-        convert_size_iec(SIZE, 'B', 'MB')
+        convert_size_iec(size, 'B', 'MB')
     except ValueError:
         pass
     else:
         errors.append('Test 1 failed')
     try:
-        convert_size_si(SIZE, 'B', 'MiB')
+        convert_size_si(size, 'B', 'MiB')
     except ValueError:
         pass
     else:
