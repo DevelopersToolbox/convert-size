@@ -3,7 +3,7 @@ Documentation to go here
 """
 
 
-def xxx(item, stuff):
+def in_tuple(item, stuff):
     """
     Docs to go here
     """
@@ -11,7 +11,7 @@ def xxx(item, stuff):
     return any(s.lower() == item.lower() for s in stuff)
 
 
-def yyy(item, stuff):
+def get_tuple(item, stuff):
     """
     Docs to go here
     """
@@ -29,18 +29,18 @@ def convert_size(size, start_unit, end_unit, si_units = False):
 
     if si_units is True:
         divisor = 1000
-        size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
+        size_name = ('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB')
     else:
         divisor = 1024
-        size_name = ("B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB")
+        size_name = ('B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB')
 
-    if xxx(start_unit, size_name) is False or xxx(end_unit, size_name) is False:
+    if in_tuple(start_unit, size_name) is False or in_tuple(end_unit, size_name) is False:
         valid_types = (', '.join(size_name))
-        print(f"Invalid unit type, valid  option are: {valid_types}")
+        print(f'Invalid unit type, valid  option are: {valid_types}')
         return size
 
-    start_index = yyy(start_unit, size_name)
-    end_index = yyy(end_unit, size_name)
+    start_index = get_tuple(start_unit, size_name)
+    end_index = get_tuple(end_unit, size_name)
 
     if end_index > start_index:
         for _count in range(end_index - start_index):

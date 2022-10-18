@@ -2,7 +2,7 @@ from codecs import open
 from os import path
 from setuptools import setup
 
-VERSION = '0.0.7'
+VERSION = '0.0.8'
 DESCRIPTION = 'Convert one file size type to another'
 
 here = path.abspath(path.dirname(__file__))
@@ -18,17 +18,17 @@ setup(
         long_description=long_description,
         long_description_content_type='text/markdown',
         license='MIT',
-#        url='https://github.com/DevelopersToolbox/convert-size',
         packages=['convertsize'],
         install_requires=[],
         keywords=['python', 'convert_size'],
+        url='https://github.com/DevelopersToolbox/convert-size',
 
         project_urls={
-            'Documentation': 'https://github.com/DevelopersToolbox/convert-size',
-            'Funding': 'https://ko-fi.com/wolfsoftware',
-            'Say Thanks!': 'https://saythanks.io/to/TGWolf',
-            'Source': 'https://github.com/DevelopersToolbox/convert-size',
-            'Tracker': 'https://github.com/DevelopersToolbox/convert-size/issues/',
+            ' Source': 'https://github.com/DevelopersToolbox/convert-size',
+            ' Tracker': 'https://github.com/DevelopersToolbox/convert-size/issues/',
+            ' Documentation': 'https://github.com/DevelopersToolbox/convert-size',
+            ' Funding': 'https://ko-fi.com/wolfsoftware',
+            ' Say Thanks!': 'https://saythanks.io/to/TGWolf',
         },
 
         classifiers= [
