@@ -13,11 +13,11 @@ The main usage is the same no matter how you access the converter.
 new_size = converter_function(original_size, original_code, target_code)
 ```
 
-| Parameter      | Type    | Required?     | Example Value | Purpose         |
-| -------------- | ------- | ------------- | :-----------: | --------------- |
-| original\_size | Integer | Yes           | 123456789     |               | The current size without any unit type. |
-| original\_code | String  | Yes           | 'MiB'         |               | The code for the original type. |
-| target\_code   | String  | Yes           | 'GiB'         |               | The code for the target type.   |
+| Parameter      | Type    | Required?     | Example Value | Purpose                                 |
+| -------------- | ------- | :-----------: | :-----------: | --------------------------------------- |
+| original\_size | Integer | Yes           | 123456789     | The current size without any unit type. |
+| original\_code | String  | Yes           | 'MiB'         | The code for the original type.         |
+| target\_code   | String  | Yes           | 'GiB'         | The code for the target type.           |
 
 > The 2 codes (original &amp; target) are dependant on if you are using IEC or SI mode, so make sure you use the correct one. A ValueError exception is throw if the code is not located.
 
