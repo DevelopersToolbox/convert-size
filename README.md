@@ -13,7 +13,7 @@
         <img src="https://img.shields.io/github/commits-since/DevelopersToolbox/convert-size/latest.svg?color=blue&style=for-the-badge" alt="Commits since release">
     </a>
     <a href="https://app.codecov.io/gh/DevelopersToolbox/convert-size">
-        <img src="https://img.shields.io/codecov/c/gh/DevelopersToolbox/convert-size?color=blue&style=for-the-badge" alt="Code coverage">
+        <img src="https://img.shields.io/codecov/c/gh/DevelopersToolbox/convert-size?style=for-the-badge" alt="Code coverage">
     </a>
     <br />
     <a href=".github/CODE_OF_CONDUCT.md">
