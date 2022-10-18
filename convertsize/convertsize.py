@@ -25,7 +25,7 @@ def convert_size(size, start_unit, end_unit, si_units = False):
     Docs to go here
     """
     if size == 0:
-        return "0"
+        return 0
 
     if si_units is True:
         divisor = 1000

@@ -118,18 +118,18 @@ tests = [
 SIZE = 1
 
 
-def text_zero():
+def test_zero():
     """
     Test 0 bytes password
     """
     assert convert_size(0, 'B', 'MiB') == 0  # nosec: B101
 
 
-def text_invalid_options():
+def test_invalid_options():
     """
     Test passing invalid option
     """
-    assert convert_size(size, 'B', 'MB') == size  # nosec: B101
+    assert convert_size(SIZE, 'B', 'MB') == SIZE  # nosec: B101
 
 
 def get_type(code, section = 'IEC'):
