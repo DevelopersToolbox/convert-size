@@ -1,6 +1,14 @@
 name: Codecov
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+      - main
+    tags-ignore:
+      - 'v*'
+      - 'rc-*'
+
 jobs:
   run:
     runs-on: ${{ matrix.os }}

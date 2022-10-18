@@ -1,4 +1,4 @@
-name: Create Test Release
+name: Create PyPITest Release
 
 on:
   push:
